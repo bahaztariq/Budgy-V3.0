@@ -22,9 +22,9 @@ class Expence{
         $this->description = $description;
         $this->date = $date;
         $this->category = $category;
-        $sql = "INSERT INTO expences(UserID,montant,description,date_,category) VALUES (':UserId',':montant',':description',':date',':category')";
-        $this->connect->prepare($sql);
-        $this->connect->execute([
+        $sql = "INSERT INTO expences(UserID,montant,description,date_,category) VALUES (:UserId,:montant,:description,:date,:category)";
+        $result = $this->connect->prepare($sql);
+        $result->execute([
             ':UserId' => $this->UserId,
             ':montant' => $this->montant,
             ':description' => $this->description,

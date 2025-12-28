@@ -18,7 +18,7 @@ class Income{
         $this->montant = $montant;
         $this->description = $description;
         $this->date = $date;
-        $sql = "INSERT INTO incomes(UserID,montant,description,date_) VALUES (':UserId',':montant',':description',':date')";
+        $sql = "INSERT INTO incomes(UserID,montant,description,date_) VALUES (:UserId,:montant,:description,:date)";
         $this->connect->prepare($sql);
         $this->connect->execute([
             ':UserId' => $this->UserId,

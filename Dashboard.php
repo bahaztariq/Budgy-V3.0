@@ -14,14 +14,14 @@ if (!isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind Dashboard Template</title>
+    <title>Budgy - Dashboard </title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sekuya&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="icon" href="imgs/icon.png">
+    <link rel="icon" href="./imgs/icon.png">
 
     <style>
         /* Custom Scrollbar for cleaner look */
@@ -127,8 +127,8 @@ if (!isset($_SESSION['user_id'])) {
                                 echo "<h3 class='text-2xl font-bold text-black-800'>" . number_format($sum2, 2) . "</h3>";
                              ?>
                             </div>
-                            <div class="p-2 bg-indigo-50 rounded-lg text-indigo-600">
-                                <i class="w-5 h-5 ph ph-users-three text-2xl"></i>
+                            <div class="p-2 bg-red-50 rounded-lg text-red-600">
+                                <i class="w-5 h-5 ph ph-hand-coins text-2xl"></i>
                             </div>
                         </div>
                         <p class="text-xs text-green-600 flex items-center gap-1">
@@ -145,8 +145,8 @@ if (!isset($_SESSION['user_id'])) {
                              echo "<h3 class='text-2xl font-bold text-black-800'>" . number_format($sum, 2) . "</h3>";
                              ?>
                             </div>
-                            <div class="p-2 bg-red-50 rounded-lg text-red-600">
-                                <i class="w-5 h-5 ph ph-warning-circle text-2xl"></i>
+                            <div class="p-2 bg-green-50 rounded-lg text-green-600">
+                                <i class="w-5 h-5 ph ph-money text-2xl"></i>
                             </div>
                         </div>
                         <p class="text-xs text-black-400">Requires attention</p>

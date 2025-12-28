@@ -3,18 +3,29 @@ require('./db_connect.php');
 include('incomes/show-incomes.php');
 include('expences/show-expences.php');
 
+
+session_start();
+if (!isset($_SESSION['user_id'])) {   
+      header("Location: login.php");    
+      exit;
+}
+
 $expence_data = null;
 if(isset($_GET['edit_id'])) {
-    $edit_id = mysqli_real_escape_string($connect, $_GET['edit_id']);
+    $edit_id = $_GET['edit_id'];
     $query = "SELECT * FROM expences WHERE id = '$edit_id'";
-    $result = mysqli_query($connect, $query);
+    $result = $connect->query($query);
     
-    if(mysqli_num_rows($result) > 0) {
-        $expence_data = mysqli_fetch_assoc($result);
+    if($result->rowCount() > 0) {
+        $expence_data = $result->fetch(PDO::FETCH_ASSOC);
     }
 }
 
-$categories = $connect->query("SELECT * from category_limits");
+$categories_result = $connect->query("SELECT * from category_limits");
+$categories = [];
+while($row = $categories_result->fetch(PDO::FETCH_ASSOC)) {
+    $categories[] = $row;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,9 +80,16 @@ $categories = $connect->query("SELECT * from category_limits");
                 </div>
                  <!-- incomes -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                    <div class="px-6 py-4 border- border-gray-100 flex justify-between items-center">
+                    <div class="px-6 py-4 border- border-gray-100 flex justify-between items-center bg-[#70E000]">
                         <h3 class="font-bold text-lg text-black-800">Revenu Transactions</h3>
-                        <button class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">View All</button>
+                        <select name="Filtred_Category" class=" p-2 bg-[#70E000] rounded border border-black" required>
+                            <option value="">All Category</option>
+                            <?php
+                                foreach($categories as $row){
+                                   echo "<option value='{$row['category']}'>{$row['category']}</option>";
+                                }
+                            ?>
+                        </select>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-sm text-black-600">
@@ -130,8 +148,8 @@ $categories = $connect->query("SELECT * from category_limits");
                 <select name="category" class=" p-2 bg-gray-200 rounded border border-gray-300" required>
                     <option value="">Select Category</option>
                     <?php
-                    while($row = $categories->fetch(PDO::FETCH_ASSOC)){
-                        echo "<option value='{$row['category']}'>{$row['category']}</option>";
+                        foreach($categories as $cat){
+                        echo "<option value='{$cat['category']}'>{$cat['category']}</option>";
                         }
                     ?>
                 </select>

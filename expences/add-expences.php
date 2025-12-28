@@ -1,6 +1,7 @@
 <?php
 require '../db_connect.php';
 require '../classes/Expence.php';
+session_start();
 $expence = new Expence($connect);
 
 

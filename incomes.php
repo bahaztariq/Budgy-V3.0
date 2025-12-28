@@ -1,16 +1,24 @@
 <?php
 require('./db_connect.php');
-include('incomes/show-incomes.php');
-include('expences/show-expences.php');
+
+include (BASE_PATH . '/incomes/show-incomes.php');
+include (BASE_PATH . '/expences/show-expences.php');
+
+
+session_start();
+if (!isset($_SESSION['user_id'])) {   
+      header("Location: login.php");    
+      exit;
+}
 
 $income_data = null;
 if(isset($_GET['edit_id'])) {
-    $edit_id = mysqli_real_escape_string($connect, $_GET['edit_id']);
+    $edit_id = $_GET['edit_id'];
     $query = "SELECT * FROM incomes WHERE id = '$edit_id'";
-    $result = mysqli_query($connect, $query);
+    $result = $connect->query($query);
     
-    if(mysqli_num_rows($result) > 0) {
-        $income_data = mysqli_fetch_assoc($result);
+    if($result->rowCount() > 0) {
+        $income_data = $result->fetch(PDO::FETCH_ASSOC);
     }
 }
 ?>
@@ -67,9 +75,8 @@ if(isset($_GET['edit_id'])) {
                 </div>
                  <!-- incomes -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                    <div class="px-6 py-4 border- border-gray-100 flex justify-between items-center">
+                    <div class="px-6 py-4 border- border-gray-100 flex justify-between items-center bg-[#70E000]">
                         <h3 class="font-bold text-lg text-black-800">Revenu Transactions</h3>
-                        <button class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">View All</button>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-sm text-black-600">

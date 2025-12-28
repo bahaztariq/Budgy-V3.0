@@ -91,3 +91,19 @@ if (dtx && typeof Donut !== 'undefined') {
         // }
     });
 }
+
+
+document.querySelector('select[name="Filtred_Category"]').addEventListener('change', function() {
+    const selectedCategory = this.value.toLowerCase();
+    const rows = document.querySelectorAll('tbody tr');
+    
+    rows.forEach(row => {
+        const category = row.querySelector('td:nth-child(5) span').textContent.toLowerCase();
+        
+        if (selectedCategory === '' || category === selectedCategory) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
