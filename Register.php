@@ -1,6 +1,7 @@
 <?php
-require 'db_connect.php';
-require './classes/User.php';
+require __DIR__ . '/config.php';
+require BASE_PATH . '/db_connect.php';
+require BASE_PATH .'/classes/User.php';
 session_start();
 
 

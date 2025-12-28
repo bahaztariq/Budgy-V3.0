@@ -1,7 +1,8 @@
 <?php
 session_start();
-require 'db_connect.php';
-require './classes/User.php';
+require __DIR__ . '/config.php';
+require BASE_PATH . '/db_connect.php';
+require BASE_PATH .'/classes/User.php';
 
 
 if(isset($_POST['submit'])){

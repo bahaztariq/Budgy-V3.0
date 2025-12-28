@@ -1,7 +1,8 @@
 <?php
-require('./db_connect.php');
-include('incomes/show-incomes.php');
-include('expences/show-expences.php');
+require __DIR__ . '/config.php';
+require BASE_PATH . '/db_connect.php';
+include BASE_PATH .'/incomes/show-incomes.php';
+include BASE_PATH .'/expences/show-expences.php';
 
 
 session_start();
